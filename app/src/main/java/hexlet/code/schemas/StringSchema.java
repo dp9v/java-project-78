@@ -7,12 +7,12 @@ public class StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema minLength(int length) {
-        checks.add(s -> s.length() >= length);
+        checks.add(s -> s == null || s.length() >= length);
         return this;
     }
 
     public StringSchema contains(String subString) {
-        checks.add(s -> s.contains(subString));
+        checks.add(s -> s == null || s.contains(subString));
         return this;
     }
 

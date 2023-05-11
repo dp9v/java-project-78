@@ -10,7 +10,16 @@ public class MapSchema extends BaseSchema<Map> {
     }
 
     public MapSchema sizeof(int size) {
-        checks.add(m -> m.size() == size);
+        checks.add(m -> m == null || m.size() == size);
+        return this;
+    }
+
+    public MapSchema shape(Map<String, BaseSchema> schemas) {
+        checks.add(map ->
+            schemas.entrySet()
+                .stream()
+                .allMatch(e -> e.getValue().isValid(map.get(e.getKey())))
+        );
         return this;
     }
 }

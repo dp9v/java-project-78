@@ -10,12 +10,12 @@ public class NumberSchema extends BaseSchema<Integer> {
     }
 
     public NumberSchema positive() {
-        checks.add(n -> n > 0);
+        checks.add(n -> n == null || n > 0);
         return this;
     }
 
     public NumberSchema range(int leftBorder, int rightBorder) {
-        checks.add(n -> n >= leftBorder && n <= rightBorder);
+        checks.add(n -> n == null || (n >= leftBorder && n <= rightBorder));
         return this;
     }
 }
