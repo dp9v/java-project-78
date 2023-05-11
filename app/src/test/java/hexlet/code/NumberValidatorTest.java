@@ -12,6 +12,7 @@ public class NumberValidatorTest {
 
         validator.required();
         assertThat(validator.isValid(null)).isFalse();
+        assertThat(validator.isValid(1)).isTrue();
     }
 
     @Test

@@ -1,9 +1,5 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
 public class StringSchema extends BaseSchema<String> {
     public StringSchema required() {
         checks.add(s -> s != null && s.length() > 0);
