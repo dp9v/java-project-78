@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class StringSchema {
-    private final List<Predicate<String>> checks = new ArrayList<>();
-
+public class StringSchema extends BaseSchema<String> {
     public StringSchema required() {
         checks.add(s -> s != null && s.length() > 0);
         return this;
@@ -22,8 +20,4 @@ public class StringSchema {
         return this;
     }
 
-    public boolean isValid(String validatedString) {
-        return checks.stream()
-            .allMatch(sp -> sp.test(validatedString));
-    }
 }

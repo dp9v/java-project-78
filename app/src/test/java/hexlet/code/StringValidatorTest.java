@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class StringValidatorTest {
-
     @Test
     public void testRequired() {
-        var validator = Validator.string().required();
+        var validator = Validator.string();
+        assertThat(validator.isValid(null)).isTrue();
+
+        validator.required();
 
         assertThat(validator.isValid(null)).isFalse();
         assertThat(validator.isValid("")).isFalse();
