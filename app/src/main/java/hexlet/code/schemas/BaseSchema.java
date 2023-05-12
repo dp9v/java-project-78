@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 public abstract class BaseSchema {
     protected final List<Predicate> checks = new ArrayList<>();
 
-    public boolean isValid(Object validatedString) {
+    public final boolean isValid(Object validatedString) {
         return checks.stream()
             .allMatch(sp -> sp.test(validatedString));
     }
