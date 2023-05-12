@@ -5,7 +5,6 @@ public class StringSchema extends BaseSchema<String> {
         checks.add(s -> s != null && s.length() > 0);
         return this;
     }
-
     public StringSchema minLength(int length) {
         checks.add(s -> s == null || s.length() >= length);
         return this;
