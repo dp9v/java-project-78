@@ -5,34 +5,36 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class NumberValidatorTest {
+    private static final Validator VALIDATOR = new Validator();
+
     @Test
     public void testRequired() {
-        var validator = Validator.number();
-        assertThat(validator.isValid(null)).isTrue();
+        var schema = VALIDATOR.number();
+        assertThat(schema.isValid(null)).isTrue();
 
-        validator.required();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(1)).isTrue();
+        schema.required();
+        assertThat(schema.isValid(null)).isFalse();
+        assertThat(schema.isValid(1)).isTrue();
     }
 
     @Test
     public void testPositive() {
-        var validator = Validator.number().positive();
+        var schema = VALIDATOR.number().positive();
 
-        assertThat(validator.isValid(-1)).isFalse();
-        assertThat(validator.isValid(0)).isFalse();
-        assertThat(validator.isValid(1)).isTrue();
+        assertThat(schema.isValid(-1)).isFalse();
+        assertThat(schema.isValid(0)).isFalse();
+        assertThat(schema.isValid(1)).isTrue();
     }
 
     @Test
     public void testRange() {
-        var validator = Validator.number().range(-1, 1);
+        var schema = VALIDATOR.number().range(-1, 1);
 
-        assertThat(validator.isValid(-2)).isFalse();
+        assertThat(schema.isValid(-2)).isFalse();
 
-        assertThat(validator.isValid(-1)).isTrue();
-        assertThat(validator.isValid(1)).isTrue();
-        assertThat(validator.isValid(2)).isFalse();
+        assertThat(schema.isValid(-1)).isTrue();
+        assertThat(schema.isValid(1)).isTrue();
+        assertThat(schema.isValid(2)).isFalse();
 
 
     }
