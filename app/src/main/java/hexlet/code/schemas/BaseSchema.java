@@ -12,6 +12,9 @@ public abstract class BaseSchema {
         checks.add(validate);
     }
 
+    /**
+     * @return Same schema object with added not null check
+     */
     public BaseSchema required() {
         addCheck(Objects::nonNull);
         return this;
